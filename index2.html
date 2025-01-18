@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="hangman_logo2.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game - Main Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Silkscreen:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h2 {
+            font-family: "Silkscreen", sans-serif;
+            font-weight: 400;
+            font-size: 45px;
+            font-style: normal;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container"></div>
+    <h2 id="playerGreeting"></h2>
+    </div>
+    <div class="game-model">
+        <div class="content">
+            <img src="lost.gif" alt="gif">
+            <h4>
+                Game Over!
+            </h4>
+            <p>
+                The correct word was: <b>Rainbow</b>
+            </p>
+            <div class="button-container">
+                <button class="play-again" id="play-again-btn" style="display: inline;">Play Again</button>
+                <button class="play-again" id="quit-btn" style="display: inline;">
+                    <a href="index.html" style="color: #fff; text-decoration: none;">Quit</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hangman-box">
+            <img src="images/hangman-0.svg" alt="hangman-img">
+            <h1>Hangman Game</h1>
+        </div>
+        <div>
+            <div class="game-box">
+                <ul class="word-display">
+                    <li class="letter"></li>
+                    <li class="letter"></li>
+                    <li class="letter guessed">A</li>
+                    <li class="letter"></li>
+                    <li class="letter"></li>
+                    <li class="letter"></li>
+                </ul>
+                <h4 class="hint-text">
+                    Hint:
+                    <b>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</b>
+                </h4>
+                <h4 class="guesses-text">
+                    Incorrect Guesses:
+                    <b>0/6</b>
+                </h4>
+                <div class="keyboard">
+                    <button>a</button>
+                    <button>b</button>
+                    <button>c</button>
+                    <button>d</button>
+                    <button>e</button>
+                    <button>f</button>
+                    <button>g</button>
+                    <button>h</button>
+                    <button>i</button>
+                    <button>j</button>
+                    <button>k</button>
+                    <button>l</button>
+                    <button>m</button>
+                    <button>n</button>
+                    <button>o</button>
+                    <button>p</button>
+                    <button>q</button>
+                    <button>r</button>
+                    <button>s</button>
+                    <button>t</button>
+                    <button>u</button>
+                    <button>v</button>
+                    <button>w</button>
+                    <button>x</button>
+                    <button>y</button>
+                    <button>z</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sound = new Audio('/sounds/keystroke.mp3');
+        const sound1 = new Audio('/sounds/button.mp3');
+        function playSound() {
+            sound.currentTime = 0;
+            sound.play();
+        }
+
+        function playSound1() {
+            sound1.currentTime = 0;
+            sound1.play();
+        }
+
+        const buttons = document.querySelectorAll('.keyboard button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                playSound();
+                console.log(`Button ${button.textContent} clicked`);
+            });
+        });
+
+        document.addEventListener('keydown', function (event) {
+            const key = event.key.toLowerCase();
+            if (key >= 'a' && key <= 'z') {
+                playSound();
+                console.log(`Key ${key} pressed`);
+            }
+        });
+
+        document.getElementById('play-again-btn').addEventListener('click', function () {
+            playSound1();
+            console.log('Play Again button clicked');
+        });
+
+        document.getElementById('quit-btn').addEventListener('click', function () {
+            playSound1();
+            console.log('Quit button clicked');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
